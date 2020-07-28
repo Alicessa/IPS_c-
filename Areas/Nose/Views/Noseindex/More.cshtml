@@ -1,0 +1,15 @@
+﻿@using IPS.Models
+@{
+    ViewBag.Title = "More";
+    Layout = "~/Views/Shared/_LayoutNose.cshtml";
+}
+
+<h2>更多</h2>
+
+<ul>
+    @foreach (Info item in ViewBag.infos)
+    {
+        <li><a href="/Nose/Noseindex/Detail/@item.Id">@item.Title</a></li>
+
+    }
+</ul>

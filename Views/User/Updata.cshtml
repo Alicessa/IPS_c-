@@ -1,0 +1,122 @@
+﻿@model  Userlogin
+@using IPS.Models;
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统登录</title>
+
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: url("/Img/aa.jpg");
+            animation-name: myfirst;
+            animation-duration: 30s;
+            /*变换时间*/
+            animation-delay: 6s;
+            /*动画开始时间*/
+            animation-iteration-count: infinite;
+            /*下一周期循环播放*/
+            animation-play-state: running;
+            /*动画开始运行*/
+        }
+
+
+        @@keyframes myfirst {
+            0% {
+                background: url("/Img/aa.jpg");
+            }
+
+
+            30% {
+                background: url("/Img/ee.jpg")
+            }
+
+            60% {
+                background: url("/Img/aa.jpg")
+            }
+
+            90% {
+                background: url("/Img/dd.jpg")
+            }
+
+            100% {
+                background: url("/Img/zz.jpg")
+            }
+        }
+
+
+        .form {
+            background: rgba(255,255,255,0.2);
+            width: 400px;
+            margin: 120px auto;
+        }
+        /*阴影*/
+        .fa {
+            display: inline-block;
+            top: 27px;
+            left: 6px;
+            position: relative;
+            color: #ccc;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding-left: 26px;
+        }
+
+        .checkbox {
+            padding-left: 21px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+  <form method="post">
+
+        <div class="container">
+
+            <div class="form row">
+                <div class="form-horizontal col-md-offset-3" id="login_form">
+                    <h3 class="form-title">用户修改</h3><span><class ="form-title" style="color:red">@ViewBag.masg</span>
+                    <div class="col-md-9">
+                            
+                          @Html.HiddenFor(u=>u.Id) 
+                        <div class="form-group">
+                            <i class="fa fa-user fa-lg"> </i>
+                            @Html.TextBoxFor(u => u.UserName, new { @class = "form-control required", placeholder = "输入用户名" })
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-lock fa-lg"> </i>
+                            @Html.TextBoxFor(u => u.Password, new { @class = "form-control required", placeholder = "输入密码" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownListFor(u => u.Role, ViewBag.Istrole as IEnumerable<SelectListItem>)
+                        </div>
+                         <div class="form-group">
+                            @Html.DropDownListFor(u => u.State, ViewBag.Issatate as IEnumerable<SelectListItem>)
+                        </div>
+                        <div class="form-group col-md-offset-9">
+                            <button type="submit" class="btn btn-success pull-right" name="submit"> 修改</button>
+
+                        </div>
+                           </form>
+
+                    </div>
+                </div>
+            </div>
+       
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")

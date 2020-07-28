@@ -1,0 +1,171 @@
+﻿
+@model PagedList<Info>
+ @using Webdiyer.WebControls.Mvc;
+@using IPS.Models;
+@{
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统登录</title>
+
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: url("/Img/aa.jpg");
+            animation-name: myfirst;
+            animation-duration: 30s;
+            /*变换时间*/
+            animation-delay: 6s;
+            /*动画开始时间*/
+            animation-iteration-count: infinite;
+            /*下一周期循环播放*/
+            animation-play-state: running;
+            /*动画开始运行*/
+        }
+
+
+        @@keyframes myfirst {
+            0% {
+                background: url("/Img/uu.jpg");
+            }
+
+
+            30% {
+                background: url("/Img/ee.jpg")
+            }
+
+            60% {
+                background: url("/Img/aa.jpg")
+            }
+
+            90% {
+                background: url("/Img/dd.jpg")
+            }
+
+            100% {
+                background: url("/Img/zz.jpg")
+            }
+        }
+
+
+        .form {
+            background: rgba(255,255,255,0.2);
+            width: 400px;
+            margin: 120px auto;
+        }
+        /*阴影*/
+        .fa {
+            display: inline-block;
+            top: 27px;
+            left: 6px;
+            position: relative;
+            color: #ccc;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding-left: 26px;
+        }
+
+        .checkbox {
+            padding-left: 21px;
+        }
+        table{
+            table-layout:fixed;
+        }
+        th{
+            
+             font-size:16px;
+
+        }
+        td{
+            width:150px;
+            height:30px;
+           white-space: nowrap;text-overflow: ellipsis;overflow: hidden;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <div class="container">
+
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>信息类别id</th>
+                    <th>标题</th>
+                    <th>信息内容</th>
+                    <th>用户登录id</th>
+                    <th>创建时间</th>
+                    <th>发布时间</th>
+
+                    <th>下架时间</th>
+                    <th>更新用户时间</th>
+                    <th>更新时间</th>
+                    <th>信息浏览量</th>
+                    <th>置顶</th>
+                    <th>信息状态</th>
+                    <th>操作</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Info info in Model)
+                {
+                <tr>
+                    <td>@info.Id</td>
+                    <td>@info.InfoId</td>
+                    <td>@info.Title</td>
+                    <td>@info.infoContent</td>
+                    <td>@info.UserloginId</td>
+                    <td>@info.CreationTime</td>
+
+
+                    <td>@info.ReleaseTime</td>
+                    <td>@info.OffshelfTime</td>
+                    <td>@info.UpdateUserloginId</td>
+                    <td>@info.UpdateTime</td>
+                    <td>@info.InfoViews</td>
+
+
+                    <td>@info.RoofPlacement</td>
+                    <td>@info.State</td>
+
+
+
+                    <td>
+                        <a href="/Info/Updata/@info.Id" style="margin-right:5px;">修改</a>
+                       
+                    </td>
+                    <td>
+                       
+                        <a href="/Info/Delete/@info.Id" onclick="return confirm('确定要删除标题 @info.Title 吗？');">删除</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <nav>
+            @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "id", ContainerTagName = "ul", CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", Id = "bootstrappager" })
+        </nav>
+    </div>
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+

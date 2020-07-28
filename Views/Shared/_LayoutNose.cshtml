@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -IPS信息发布系统</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: url("/Img/aa.jpg");
+            animation-name: myfirst;
+            animation-duration: 30s;
+            /*变换时间*/
+            animation-delay: 6s;
+            /*动画开始时间*/
+            animation-iteration-count: infinite;
+            /*下一周期循环播放*/
+            animation-play-state: running;
+            /*动画开始运行*/
+        }
+
+
+        @@keyframes myfirst {
+            0% {
+                background: url("/Img/uu.jpg");
+            }
+
+
+            30% {
+                background: url("/Img/ee.jpg")
+            }
+
+            60% {
+                background: url("/Img/aa.jpg")
+            }
+
+            90% {
+                background: url("/Img/dd.jpg")
+            }
+
+            100% {
+                background: url("/Img/zz.jpg")
+            }
+        }
+
+
+        .form {
+            background: rgba(255,255,255,0.2);
+            width: 400px;
+            margin: 120px auto;
+        }
+        /*阴影*/
+        .fa {
+            display: inline-block;
+            top: 27px;
+            left: 6px;
+            position: relative;
+            color: #ccc;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding-left: 26px;
+        }
+
+        .checkbox {
+            padding-left: 21px;
+        }
+
+        table {
+            table-layout: fixed;
+        }
+
+        th {
+            font-size: 16px;
+        }
+
+        td {
+            width: 150px;
+            height: 30px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("IPS信息发布系统", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
+                    <li>@Html.ActionLink("关于", "About", "Home")</li>
+                    <li>@Html.ActionLink("登录", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+
+                </ul>
+            </div>
+            <!--<div>您好<input type="text" name="valueid" value="@Session["user"]" /></div>-->
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - IPS信息发布系统</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
